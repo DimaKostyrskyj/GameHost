@@ -40,18 +40,18 @@ export function HomeNav() {
   const initials = user?.username.slice(0, 2).toUpperCase() ?? "GH";
 
   return (
-    <nav className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
+    <nav className="animate-fade-in relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
       <Link href="/" className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-black">
+        <div className="logo-mark flex h-10 w-10 items-center justify-center rounded-xl bg-white text-black shadow-[0_0_0_1px_rgba(255,255,255,.08)]">
           <Gamepad2 size={21} />
         </div>
         <span className="text-xl font-semibold">GameHost</span>
       </Link>
 
       <div className="hidden items-center gap-8 text-sm text-zinc-400 md:flex">
-        <a href="#features" className="hover:text-white">Возможности</a>
-        <a href="#games" className="hover:text-white">Игры</a>
-        <a href="#pricing" className="hover:text-white">Тарифы</a>
+        <a href="#features" className="transition-colors hover:text-white">Возможности</a>
+        <a href="#games" className="transition-colors hover:text-white">Игры</a>
+        <a href="#pricing" className="transition-colors hover:text-white">Тарифы</a>
       </div>
 
       <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ export function HomeNav() {
         ) : user ? (
           <Link
             href="/dashboard"
-            className="flex items-center gap-2.5 rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-2 hover:border-zinc-700 hover:bg-zinc-900"
+            className="hover-lift flex items-center gap-2.5 rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-2"
           >
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/15 text-[11px] font-semibold text-indigo-300">
               {initials}
@@ -73,10 +73,10 @@ export function HomeNav() {
           </Link>
         ) : (
           <>
-            <Link href="/login" className="rounded-xl px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-white">
+            <Link href="/login" className="rounded-xl px-4 py-2.5 text-sm text-zinc-300 transition hover:bg-zinc-900 hover:text-white">
               Войти
             </Link>
-            <Link href="/register" className="rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-zinc-200">
+            <Link href="/register" className="btn-shine rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-zinc-200">
               Регистрация
             </Link>
           </>

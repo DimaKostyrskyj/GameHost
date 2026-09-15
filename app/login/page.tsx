@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { AuthCard } from "@/components/AuthCard";
 
-const input = "h-12 w-full rounded-xl border border-zinc-800 bg-zinc-900/70 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10";
+const input = "h-12 w-full rounded-xl border border-zinc-800 bg-zinc-900/70 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-indigo-500 input-glow focus:ring-2 focus:ring-indigo-500/10";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -71,7 +71,7 @@ export default function LoginPage() {
 
         {error && <div className="rounded-lg border border-red-900/50 bg-red-950/30 px-4 py-3 text-sm text-red-400">{error}</div>}
 
-        <button disabled={loading} className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white text-sm font-medium text-black transition hover:bg-zinc-200 disabled:opacity-50">
+        <button disabled={loading} className="btn-shine flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-zinc-200 disabled:opacity-50">
           {loading ? "Вход..." : <>Войти <ArrowRight size={17} /></>}
         </button>
       </form>

@@ -8,32 +8,32 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#050507] text-white">
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute left-1/2 top-[-260px] h-[650px] w-[650px] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-[150px]" />
-        <div className="absolute right-[-220px] top-[35%] h-[520px] w-[520px] rounded-full bg-purple-600/10 blur-[160px]" />
+        <div className="hero-orb absolute left-1/2 top-[-260px] h-[650px] w-[650px] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-[150px]" />
+        <div className="hero-orb-reverse absolute right-[-220px] top-[35%] h-[520px] w-[520px] rounded-full bg-purple-600/10 blur-[160px]" />
         <div className="grid-bg absolute inset-0 opacity-70" />
       </div>
 
       <HomeNav />
 
       <section className="relative z-10 mx-auto max-w-5xl px-6 pb-24 pt-24 text-center lg:pt-32">
-        <div className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950/70 px-4 py-2 text-xs text-zinc-400">
+        <div className="animate-fade-up mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950/70 px-4 py-2 text-xs text-zinc-400">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
           Игровой хостинг нового поколения
         </div>
-        <h1 className="text-5xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-7xl">
+        <h1 className="animate-fade-up stagger-1 text-5xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-7xl">
           Твой сервер.
           <br />
           <span className="text-zinc-500">Твой мир.</span>
         </h1>
-        <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">
+        <p className="animate-fade-up stagger-2 mx-auto mt-7 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">
           Создавай и управляй игровыми серверами из одной панели. Быстрый запуск,
           удобное управление и инфраструктура, которая растёт вместе с твоим проектом.
         </p>
-        <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-          <Link href="/register" className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-medium text-black hover:bg-zinc-200">
+        <div className="animate-fade-up stagger-3 mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <Link href="/register" className="btn-shine group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-zinc-200">
             Создать аккаунт <ArrowRight size={17} />
           </Link>
-          <a href="#features" className="inline-flex h-12 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950/60 px-6 text-sm text-zinc-300 hover:border-zinc-700 hover:text-white">
+          <a href="#features" className="inline-flex h-12 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950/60 px-6 text-sm text-zinc-300 transition hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white">
             Возможности
           </a>
         </div>
@@ -44,7 +44,7 @@ export default function Home() {
             ["Безопасность", "Изолированные ресурсы и контролируемый доступ.", ShieldCheck]
           ].map(([title, text, Icon]) => {
             const I = Icon as typeof Zap;
-            return <div key={title as string} className="glass rounded-2xl p-5 shadow-glow">
+            return <div key={title as string} className={`glass hover-lift animate-fade-up rounded-2xl p-5 shadow-glow ${title === "Быстрый запуск" ? "stagger-1" : title === "Разные локации" ? "stagger-2" : "stagger-3"}`}>
               <I size={20} className="text-zinc-300" />
               <h3 className="mt-4 text-sm font-medium">{title as string}</h3>
               <p className="mt-1.5 text-sm leading-6 text-zinc-500">{text as string}</p>
@@ -58,7 +58,7 @@ export default function Home() {
           <p className="text-xs uppercase tracking-[.2em] text-zinc-600">Поддерживаемые игры</p>
           <h2 className="mt-3 text-3xl font-semibold">Играй во что хочешь</h2>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {games.map(game => <div key={game} className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 text-center text-sm text-zinc-300 hover:border-zinc-700 hover:text-white">{game}</div>)}
+            {games.map(game => <div key={game} className="hover-lift rounded-2xl border border-zinc-800 bg-zinc-950 p-5 text-center text-sm text-zinc-300 transition hover:border-zinc-700 hover:text-white">{game}</div>)}
           </div>
         </div>
       </section>
@@ -75,8 +75,8 @@ export default function Home() {
               )}
             </div>
           </div>
-          <div className="glass rounded-3xl p-4 shadow-glow">
-            <div className="rounded-2xl border border-zinc-800 bg-[#07070a] p-5">
+          <div className="glass hover-lift animate-scale-in rounded-3xl p-4 shadow-glow">
+            <div className="console-scan rounded-2xl border border-zinc-800 bg-[#07070a] p-5">
               <div className="flex items-center justify-between border-b border-zinc-900 pb-4">
                 <div><p className="text-sm font-medium">Мой Valheim сервер</p><p className="mt-1 text-xs text-zinc-600">45.83.120.10:2456</p></div>
                 <span className="rounded-full border border-emerald-900/50 bg-emerald-950/30 px-2.5 py-1 text-xs text-emerald-400">● Онлайн</span>
@@ -97,10 +97,10 @@ export default function Home() {
           <div className="text-center"><p className="text-xs uppercase tracking-[.2em] text-zinc-600">Тарифы</p><h2 className="mt-3 text-4xl font-semibold">Простые планы</h2></div>
           <div className="mx-auto mt-12 grid max-w-4xl gap-4 md:grid-cols-3">
             {[["Starter","€3.99","2 GB RAM","1 CPU","20 GB NVMe"],["Standard","€7.99","4 GB RAM","2 CPU","50 GB NVMe"],["Premium","€14.99","8 GB RAM","4 CPU","100 GB NVMe"]].map(([name,price,ram,cpu,disk],i) =>
-              <div key={name} className={`rounded-2xl border p-6 ${i===1 ? "border-zinc-600 bg-zinc-900/60" : "border-zinc-800 bg-zinc-950/70"}`}>
+              <div key={name} className={`hover-lift animate-fade-up rounded-2xl border p-6 ${i===1 ? "border-zinc-600 bg-zinc-900/60 shadow-[0_20px_70px_rgba(99,102,241,.08)]" : "border-zinc-800 bg-zinc-950/70"}`}>
                 <p className="text-sm font-medium">{name}</p><p className="mt-5 text-3xl font-semibold">{price}<span className="text-sm font-normal text-zinc-600">/мес.</span></p>
                 <div className="mt-6 space-y-3 text-sm text-zinc-400">{[ram,cpu,disk].map(x=><div key={x} className="flex gap-2"><Check size={16}/>{x}</div>)}</div>
-                <Link href="/register" className="mt-7 block rounded-xl bg-white py-3 text-center text-sm font-medium text-black hover:bg-zinc-200">Выбрать</Link>
+                <Link href="/register" className="btn-shine mt-7 block rounded-xl bg-white py-3 text-center text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-zinc-200">Выбрать</Link>
               </div>
             )}
           </div>
