@@ -118,3 +118,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+
+.auth-grid {
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+}
+.auth-card {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 35px 120px rgba(0,0,0,.55), 0 0 90px rgba(99,102,241,.035);
+}
