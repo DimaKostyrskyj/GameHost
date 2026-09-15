@@ -1,30 +1,101 @@
-# GameHost
+# GameHost 2.0
 
-Initial frontend for a DatHost-like game server hosting platform.
+Полностью рабочая регистрация и авторизация на Next.js + PostgreSQL.
 
-## Included
+## Что уже работает
 
-- Modern dark landing page
-- Login page
-- Registration page
-- Responsive design
-- Tailwind CSS
-- Next.js + TypeScript
-- Prepared structure for future backend/authentication
+- Главная страница на русском
+- Регистрация пользователя
+- Проверка email
+- Проверка имени пользователя
+- Хеширование пароля через bcrypt
+- PostgreSQL
+- Login
+- HttpOnly cookie с сессией
+- Logout
+- `/api/auth/me`
+- Защищённый dashboard
+- Docker Compose для PostgreSQL
 
-## Run
+## 1. Требования
 
-Requirements: Node.js 20+.
+Node.js 20+ и Docker Desktop.
+
+## 2. Запуск PostgreSQL
+
+```bash
+docker compose up -d
+```
+
+База:
+- host: localhost
+- port: 5432
+- database: gamehost
+- user: gamehost
+- password: change_me
+
+## 3. Создание `.env.local`
+
+Скопируй `.env.example` в `.env.local`.
+
+Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+В `.env.local` обязательно задай:
+
+```env
+DATABASE_URL=postgresql://gamehost:change_me@localhost:5432/gamehost
+AUTH_SECRET=сюда-длинный-случайный-ключ-минимум-32-символа
+```
+
+## 4. Создание таблицы
+
+```bash
+docker exec -i gamehost-postgres psql -U gamehost -d gamehost < sql/schema.sql
+```
+
+Если команда с `<` не работает в PowerShell:
+
+```powershell
+Get-Content .\sql\schema.sql -Raw | docker exec -i gamehost-postgres psql -U gamehost -d gamehost
+```
+
+## 5. Установка
 
 ```bash
 npm install
+```
+
+## 6. Запуск
+
+```bash
 npm run dev
 ```
 
-Open http://localhost:3000
+Открой:
 
-## Important
+http://localhost:3000
 
-Authentication is intentionally demo-only in this first version.
-The next production step is to connect a backend, PostgreSQL database,
-secure password hashing and sessions.
+Регистрация:
+
+http://localhost:3000/register
+
+Вход:
+
+http://localhost:3000/login
+
+После успешной регистрации или входа пользователь попадает в:
+
+http://localhost:3000/dashboard
+
+## Важно
+
+Это уже настоящая регистрация с PostgreSQL, а не `console.log`.
+Пароли не сохраняются в открытом виде.
+
+Для production позже нужно добавить rate limiting, email verification,
+password reset, 2FA, CSRF/дополнительные security headers, Redis и
+разделение API/worker/Node Agent.
