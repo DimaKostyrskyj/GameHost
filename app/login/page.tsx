@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { AuthCard } from "@/components/AuthCard";
@@ -13,6 +13,14 @@ export default function LoginPage() {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("/api/auth/me", { cache: "no-store" })
+      .then((res) => {
+        if (res.ok) window.location.replace("/dashboard");
+      })
+      .catch(() => {});
+  }, []);
 
   async function submit(e: FormEvent) {
     e.preventDefault();

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HomeNav } from "@/components/HomeNav";
 import { ArrowRight, Check, Gamepad2, Globe2, ShieldCheck, Zap } from "lucide-react";
 
 const games = ["Valheim", "Minecraft", "Terraria", "Rust", "CS2", "Palworld"];
@@ -12,21 +13,7 @@ export default function Home() {
         <div className="grid-bg absolute inset-0 opacity-70" />
       </div>
 
-      <nav className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-black"><Gamepad2 size={21} /></div>
-          <span className="text-xl font-semibold">GameHost</span>
-        </Link>
-        <div className="hidden items-center gap-8 text-sm text-zinc-400 md:flex">
-          <a href="#features" className="hover:text-white">Возможности</a>
-          <a href="#games" className="hover:text-white">Игры</a>
-          <a href="#pricing" className="hover:text-white">Тарифы</a>
-        </div>
-        <div className="flex items-center gap-3">
-          <Link href="/login" className="rounded-xl px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-white">Войти</Link>
-          <Link href="/register" className="rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-zinc-200">Регистрация</Link>
-        </div>
-      </nav>
+      <HomeNav />
 
       <section className="relative z-10 mx-auto max-w-5xl px-6 pb-24 pt-24 text-center lg:pt-32">
         <div className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950/70 px-4 py-2 text-xs text-zinc-400">
