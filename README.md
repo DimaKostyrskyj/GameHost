@@ -99,3 +99,30 @@ http://localhost:3000/dashboard
 Для production позже нужно добавить rate limiting, email verification,
 password reset, 2FA, CSRF/дополнительные security headers, Redis и
 разделение API/worker/Node Agent.
+
+## Если появляется `Can't resolve '@/...'`
+
+В проект уже добавлена настройка `@/*` в `tsconfig.json`:
+
+```json
+"baseUrl": ".",
+"paths": {
+  "@/*": ["./*"]
+}
+```
+
+Если у тебя уже была старая копия проекта, замени её этой версией и заново выполни:
+
+```bash
+rm -rf .next
+npm install
+npm run build
+```
+
+В Windows PowerShell вместо `rm -rf .next` можно:
+
+```powershell
+Remove-Item .next -Recurse -Force -ErrorAction SilentlyContinue
+npm install
+npm run build
+```
