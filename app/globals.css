@@ -166,3 +166,98 @@ body { margin:0; background:#050507; color:#fff; font-family: Arial, Helvetica, 
   .magic-nav-active { width: 48px; height: 48px; transform: translate(-50%,-10px); }
   .magic-nav-item.active .magic-nav-icon { transform: translateY(-10px); }
 }
+
+/* GameHost v11 — clean navigation without floating circles */
+.magic-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid rgba(170, 255, 120, .10);
+  border-radius: 17px;
+  background: rgba(7, 11, 8, .82);
+  box-shadow: 0 16px 55px rgba(0,0,0,.36), inset 0 1px 0 rgba(255,255,255,.045);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.magic-nav-item {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 112px;
+  height: 46px;
+  padding: 0 15px;
+  color: #6f796f;
+  text-decoration: none;
+  border-radius: 13px;
+  transition: color .28s ease;
+}
+
+.magic-nav-item:hover,
+.magic-nav-item.active {
+  color: #edffe8;
+}
+
+.magic-nav-indicator {
+  position: absolute;
+  inset: 3px;
+  z-index: 0;
+  border-radius: 11px;
+  background: linear-gradient(135deg, rgba(183,255,105,.16), rgba(183,255,105,.055));
+  border: 1px solid rgba(183,255,105,.17);
+  box-shadow: 0 8px 26px rgba(116,255,72,.07), inset 0 1px 0 rgba(255,255,255,.055);
+  pointer-events: none;
+}
+
+.magic-nav-indicator::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: -1px;
+  height: 1px;
+  border-radius: 999px;
+  background: #b7ff69;
+  box-shadow: 0 0 14px rgba(183,255,105,.72);
+  opacity: .75;
+}
+
+.magic-nav-content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.magic-nav-label {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 550;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+  transition: color .28s ease;
+}
+
+.magic-nav-item:hover .magic-nav-content,
+.magic-nav-item.active .magic-nav-content {
+  color: #caffaa;
+}
+
+@media (max-width: 850px) {
+  .magic-nav-item { min-width: 72px; padding: 0 10px; }
+  .magic-nav-label { display: none; }
+}
+
+@media (max-width: 560px) {
+  .magic-nav { gap: 1px; padding: 3px; border-radius: 15px; }
+  .magic-nav-item { min-width: 52px; height: 42px; padding: 0 7px; border-radius: 11px; }
+  .magic-nav-indicator { inset: 3px; border-radius: 9px; }
+  .nav-login, .nav-register { display: none; }
+}
