@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import ServersManager from "@/components/ServersManager";
 import {
   Activity,
   ArrowUpRight,
@@ -140,7 +141,7 @@ export default function Dashboard() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#050507] text-zinc-500">
         <div className="flex items-center gap-3">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-400" />
+          <span className="h-2 w-2 animate-pulse rounded-full bg-zinc-300" />
           Загрузка панели...
         </div>
       </main>
@@ -152,8 +153,8 @@ export default function Dashboard() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050507] text-white">
       <div className="pointer-events-none fixed inset-0">
-        <div className="hero-orb absolute -left-48 top-10 h-[480px] w-[480px] rounded-full bg-indigo-600/[.055] blur-[140px]" />
-        <div className="hero-orb-reverse absolute -right-48 top-[45%] h-[520px] w-[520px] rounded-full bg-purple-600/[.045] blur-[150px]" />
+        <div className="hero-orb absolute -left-48 top-10 h-[480px] w-[480px] rounded-full bg-white/[.035] blur-[140px]" />
+        <div className="hero-orb-reverse absolute -right-48 top-[45%] h-[520px] w-[520px] rounded-full bg-white/[.025] blur-[150px]" />
         <div className="grid-bg absolute inset-0 opacity-40" />
       </div>
 
@@ -178,7 +179,7 @@ export default function Dashboard() {
               onClick={() => openTab("profile")}
               className="group flex items-center gap-2 rounded-xl px-2 py-1.5 transition hover:bg-white/[.04]"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/15 text-xs font-semibold text-indigo-300 ring-1 ring-indigo-500/10">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[.05] text-xs font-semibold text-zinc-300 ring-1 ring-indigo-500/10">
                 {initials}
               </span>
               <span className="hidden text-left sm:block">
@@ -224,7 +225,7 @@ export default function Dashboard() {
                   {active && (
                     <motion.span
                       layoutId="active-tab"
-                      className="absolute left-0 h-6 w-0.5 rounded-full bg-indigo-400"
+                      className="absolute left-0 h-6 w-0.5 rounded-full bg-zinc-300"
                     />
                   )}
                   <Icon size={18} />
@@ -241,7 +242,7 @@ export default function Dashboard() {
 
           <div className="premium-border relative mt-8 rounded-2xl border border-zinc-800/80 bg-zinc-950/70 p-5">
             <div className="flex items-center gap-2 text-xs font-medium">
-              <span className="status-online h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="status-online h-1.5 w-1.5 rounded-full bg-zinc-300" />
               Система работает
             </div>
             <p className="mt-2 text-xs leading-5 text-zinc-600">
@@ -396,7 +397,7 @@ function Overview({
           variants={enter}
           className="premium-border relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/80 p-6 sm:p-8"
         >
-          <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-indigo-500/[.04] blur-3xl" />
+          <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-white/[.03] blur-3xl" />
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-wider text-zinc-600">Инфраструктура</p>
@@ -411,7 +412,7 @@ function Overview({
           <motion.button
             whileHover={{ x: 3 }}
             onClick={onServers}
-            className="mt-6 flex items-center gap-2 text-sm text-indigo-300"
+            className="mt-6 flex items-center gap-2 text-sm text-zinc-300"
           >
             Открыть серверы <ArrowUpRight size={15} />
           </motion.button>
@@ -421,7 +422,7 @@ function Overview({
           variants={enter}
           className="hover-lift rounded-2xl border border-zinc-800 bg-zinc-950/80 p-6 sm:p-8"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-300">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[.04] text-zinc-300">
             <UserRound size={19} />
           </div>
           <p className="mt-5 text-xs uppercase tracking-wider text-zinc-600">Ваш профиль</p>
@@ -440,41 +441,7 @@ function Overview({
 }
 
 function Servers() {
-  return (
-    <div>
-      <Header
-        title="Мои серверы"
-        subtitle="Управляйте игровыми серверами и их ресурсами."
-        action={
-          <button className="flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-medium text-black">
-            <Plus size={16} />
-            Создать сервер
-          </button>
-        }
-      />
-      <div className="mt-8 grid gap-4 lg:grid-cols-2">
-        <ServerPreview
-          game="Valheim"
-          status="Доступно"
-          icon={<Gamepad2 size={22} />}
-          specs="2 GB RAM · 1 CPU · 20 GB NVMe"
-        />
-        <ServerPreview
-          game="Minecraft"
-          status="Доступно"
-          icon={<span className="text-xl">◈</span>}
-          specs="4 GB RAM · 2 CPU · 50 GB NVMe"
-        />
-      </div>
-      <div className="mt-5 rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/50 p-10 text-center">
-        <Server className="mx-auto text-zinc-700" size={30} />
-        <p className="mt-4 text-sm font-medium">Ваши реальные серверы появятся здесь</p>
-        <p className="mx-auto mt-2 max-w-md text-xs leading-5 text-zinc-600">
-          Следующий этап подключит Docker-ноды и API управления серверами.
-        </p>
-      </div>
-    </div>
-  );
+  return <ServersManager />;
 }
 
 function ServerPreview({
@@ -509,7 +476,7 @@ function ServerPreview({
             <p className="mt-1 text-xs text-zinc-600">Шаблон GameHost</p>
           </div>
         </div>
-        <span className="rounded-full border border-emerald-500/10 bg-emerald-500/5 px-2.5 py-1 text-[11px] text-emerald-300">
+        <span className="rounded-full border border-white/10 bg-white/[.04] px-2.5 py-1 text-[11px] text-zinc-300">
           {status}
         </span>
       </div>
@@ -599,7 +566,7 @@ function ProfileSection({
           className="premium-border rounded-2xl border border-zinc-800 bg-zinc-950 p-6 sm:p-8"
         >
           <div className="flex items-center gap-4">
-            <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-500/15 text-xl font-semibold text-indigo-300 ring-1 ring-indigo-500/10">
+            <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[.05] text-xl font-semibold text-zinc-300 ring-1 ring-indigo-500/10">
               {user.username.slice(0, 2).toUpperCase()}
             </span>
             <div>
@@ -646,7 +613,7 @@ function ProfileSection({
                 animate={{ opacity: 1, height: "auto" }}
                 className={`mt-5 flex items-center gap-2 overflow-hidden rounded-xl border px-4 py-3 text-sm ${
                   message.type === "success"
-                    ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-300"
+                    ? "border-white/15 bg-white/[.04] text-zinc-300"
                     : "border-red-500/20 bg-red-500/5 text-red-300"
                 }`}
               >
@@ -692,7 +659,7 @@ function Field({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="input-glow w-full rounded-xl border border-zinc-800 bg-zinc-900/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-zinc-700 focus:border-indigo-500"
+        className="input-glow w-full rounded-xl border border-zinc-800 bg-zinc-900/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-zinc-700 focus:border-zinc-700"
       />
     </label>
   );
@@ -730,7 +697,7 @@ function SettingsSection({ user }: { user: User }) {
             <button
               onClick={() => setNotifications((value) => !value)}
               className={`relative h-6 w-11 shrink-0 rounded-full transition ${
-                notifications ? "bg-indigo-500" : "bg-zinc-800"
+                notifications ? "bg-zinc-800" : "bg-zinc-800"
               }`}
             >
               <motion.span
@@ -754,9 +721,9 @@ function SettingsSection({ user }: { user: User }) {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-indigo-500/10 bg-indigo-500/[.025] p-6">
+        <div className="rounded-2xl border border-zinc-700/10 bg-white/[.025] p-6">
           <div className="flex gap-3">
-            <Zap className="text-indigo-300" size={19} />
+            <Zap className="text-zinc-300" size={19} />
             <div>
               <p className="font-medium">GameHost Beta</p>
               <p className="mt-1 text-sm leading-6 text-zinc-600">

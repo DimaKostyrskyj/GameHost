@@ -53,7 +53,7 @@ export default function Home() {
               <Link href="/games" className="dark-button group">Посмотреть игры <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" /></Link>
             </motion.div>
             <div className="mt-8 flex flex-wrap gap-5 text-xs text-zinc-600">
-              {['NVMe storage', 'Docker ready', 'PostgreSQL', '24/7 monitoring'].map((x) => <span key={x} className="flex items-center gap-2"><Check size={14} className="text-emerald-400/70" />{x}</span>)}
+              {['NVMe storage', 'Docker ready', 'PostgreSQL', '24/7 monitoring'].map((x) => <span key={x} className="flex items-center gap-2"><Check size={14} className="text-zinc-300/70" />{x}</span>)}
             </div>
           </div>
 
@@ -65,16 +65,16 @@ export default function Home() {
                   <span className="online-pill"><span className="green-dot" /> Online</span>
                 </div>
                 <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  {[[Cpu,"CPU","18%"],[Gamepad2,"RAM","2.1 GB"],[HardDrive,"NVMe","34 GB"],[Globe2,"PING","12 ms"]].map(([Icon,label,value]) => { const I = Icon as typeof Cpu; return <motion.div key={label as string} whileHover={{ y: -5, scale: 1.02 }} className="metric-card"><I size={16} className="text-emerald-300/70"/><p className="mt-4 text-[10px] uppercase tracking-[.2em] text-zinc-600">{label as string}</p><p className="mt-1 text-lg font-medium">{value as string}</p><div className="mt-3 h-1 overflow-hidden rounded-full bg-white/5"><motion.div initial={{ width: 0 }} animate={{ width: "68%" }} transition={{ duration: 1.2, delay: .5 }} className="h-full rounded-full bg-emerald-400/70"/></div></motion.div> })}
+                  {[[Cpu,"CPU","18%"],[Gamepad2,"RAM","2.1 GB"],[HardDrive,"NVMe","34 GB"],[Globe2,"PING","12 ms"]].map(([Icon,label,value]) => { const I = Icon as typeof Cpu; return <motion.div key={label as string} whileHover={{ y: -5, scale: 1.02 }} className="metric-card"><I size={16} className="text-zinc-300/70"/><p className="mt-4 text-[10px] uppercase tracking-[.2em] text-zinc-600">{label as string}</p><p className="mt-1 text-lg font-medium">{value as string}</p><div className="mt-3 h-1 overflow-hidden rounded-full bg-white/5"><motion.div initial={{ width: 0 }} animate={{ width: "68%" }} transition={{ duration: 1.2, delay: .5 }} className="h-full rounded-full bg-zinc-300/70"/></div></motion.div> })}
                 </div>
                 <div className="mt-3 rounded-2xl border border-white/[.07] bg-[#070a08] p-4 font-mono text-[11px] leading-6 text-zinc-600">
-                  <p><span className="text-emerald-400">[online]</span> server started successfully</p>
+                  <p><span className="text-zinc-300">[online]</span> server started successfully</p>
                   <p><span className="text-zinc-700">[node]</span> resources allocated: 4 vCPU / 8 GB</p>
                   <p><span className="text-zinc-700">[game]</span> Valheim world loaded in 2.4s</p>
-                  <p><span className="text-emerald-400">[ready]</span> accepting connections<span className="blink-cursor">_</span></p>
+                  <p><span className="text-zinc-300">[ready]</span> accepting connections<span className="blink-cursor">_</span></p>
                 </div>
-                <div className="mt-5 flex items-center justify-between rounded-2xl border border-emerald-400/10 bg-emerald-400/[.035] p-4">
-                  <div><p className="text-xs text-zinc-500">Состояние инфраструктуры</p><p className="mt-1 text-sm font-medium text-emerald-300">Все системы работают</p></div><Activity size={20} className="text-emerald-400" />
+                <div className="mt-5 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[.03] p-4">
+                  <div><p className="text-xs text-zinc-500">Состояние инфраструктуры</p><p className="mt-1 text-sm font-medium text-zinc-300">Все системы работают</p></div><Activity size={20} className="text-zinc-300" />
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="features" className="relative z-10 border-y border-emerald-400/[.08] bg-[#050805]/80 py-28">
+      <section id="features" className="relative z-10 border-y border-white/[.08] bg-[#050805]/80 py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-2xl"><p className="section-kicker green-kicker">Почему GameHost</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] sm:text-5xl">Всё необходимое для игрового сервера — в одном месте.</h2><p className="mt-5 text-base leading-8 text-zinc-500 sm:text-lg">Мы убираем рутину между «хочу сервер» и «мы уже играем».</p></div>
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{features.map(({ icon: Icon, title, text }, i) => <motion.div key={title} initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: .5, delay: i * .05 }} whileHover={{ y: -7 }} className="green-card"><div className="feature-icon-green"><Icon size={20}/></div><h3 className="mt-5 text-base font-medium">{title}</h3><p className="mt-2 text-sm leading-7 text-zinc-500">{text}</p></motion.div>)}</div>
@@ -93,7 +93,7 @@ export default function Home() {
         <div className="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:items-start"><div><p className="section-kicker green-kicker">Как работает</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] sm:text-5xl">Четыре шага.<br/>Никакой магии.</h2><p className="mt-5 max-w-md leading-8 text-zinc-500">GameHost автоматизирует техническую часть, чтобы ты мог сосредоточиться на самой игре.</p></div><div className="grid gap-3 sm:grid-cols-2">{steps.map(([num,title,text], i) => <motion.div key={num} initial={{ opacity: 0, x: 15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * .07 }} whileHover={{ x: 5 }} className="step-card"><span className="step-number">{num}</span><h3 className="mt-6 text-base font-medium">{title}</h3><p className="mt-2 text-sm leading-7 text-zinc-500">{text}</p></motion.div>)}</div></div>
       </section>
 
-      <section className="relative z-10 border-y border-white/[.06] bg-black/20 py-24"><div className="mx-auto max-w-7xl px-6 lg:px-8"><div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between"><div><p className="section-kicker green-kicker">Игры</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em]">Выбери свою игру.</h2></div><Link href="/games" className="group inline-flex items-center gap-2 text-sm text-emerald-300">Весь каталог <ArrowRight size={16} className="transition-transform group-hover:translate-x-1"/></Link></div><div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">{games.map((game,i) => <Link href="/games" key={game} className="game-mini-card"><span className="game-index">0{i+1}</span><Gamepad2 size={18} className="text-emerald-300/70"/><span className="mt-5 block font-medium">{game}</span><span className="mt-1 block text-xs text-zinc-600">Сервер готов к запуску</span></Link>)}</div></div></section>
+      <section className="relative z-10 border-y border-white/[.06] bg-black/20 py-24"><div className="mx-auto max-w-7xl px-6 lg:px-8"><div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between"><div><p className="section-kicker green-kicker">Игры</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em]">Выбери свою игру.</h2></div><Link href="/games" className="group inline-flex items-center gap-2 text-sm text-zinc-300">Весь каталог <ArrowRight size={16} className="transition-transform group-hover:translate-x-1"/></Link></div><div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">{games.map((game,i) => <Link href="/games" key={game} className="game-mini-card"><span className="game-index">0{i+1}</span><Gamepad2 size={18} className="text-zinc-300/70"/><span className="mt-5 block font-medium">{game}</span><span className="mt-1 block text-xs text-zinc-600">Сервер готов к запуску</span></Link>)}</div></div></section>
 
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-28 lg:px-8"><div className="cta-green"><div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><div><p className="section-kicker green-kicker">Начни сейчас</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] sm:text-5xl">Твой сервер. Твои правила.</h2><p className="mt-5 max-w-2xl leading-8 text-zinc-500">Создай аккаунт, выбери игру и собери сервер под свою команду.</p></div><div className="flex flex-col gap-3 sm:flex-row"><Link href="/register" className="green-button">Создать аккаунт <ArrowRight size={16}/></Link><Link href="/pricing" className="dark-button">Посмотреть тарифы</Link></div></div></div></section>
 

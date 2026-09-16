@@ -212,3 +212,15 @@ Could not find a declaration file for module 'bcryptjs'
 ```
 
 исправлена.
+
+## Server infrastructure
+
+The web app runs on Vercel; persistent game processes must run on a VPS/node. This project now contains `node-agent/` for Docker control and a real server database/panel flow.
+
+1. Run `sql/schema.sql` in Neon (it now includes `game_servers`).
+2. On a VPS with Docker, run the Node Agent from `node-agent/`.
+3. Add `NODE_AGENT_URL` and `NODE_AGENT_TOKEN` to Vercel.
+4. Create a server from Dashboard → Мои серверы.
+5. The web API provisions a Docker container through the node agent when the node is configured.
+
+First node templates: Valheim, Minecraft, Rust. More games can be added to `node-agent/server.mjs` with their Docker image, ports and environment.

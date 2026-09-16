@@ -345,3 +345,34 @@ body { margin:0; background:#050507; color:#fff; font-family: Arial, Helvetica, 
   .header-register { width: 38px; padding: 0; justify-content: center; font-size: 0; }
   .header-register::before { content: "+"; font-size: 18px; line-height: 1; color: #caffb4; }
 }
+
+/* ===== Neutral visual system ===== */
+body{background:#070707;color:#f4f4f5}
+::selection{background:rgba(255,255,255,.16);color:#fff}
+.green-logo,.brand-mark,.green-button{background:#f4f4f5!important;color:#09090b!important;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 12px 35px rgba(0,0,0,.25)!important}
+.home-page{background:#070707!important}
+.green-blob-one,.green-blob-two{background:rgba(255,255,255,.035)!important}
+.green-grid{background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px)!important}
+.green-badge,.green-kicker{color:#a1a1aa!important}
+.green-dot{background:#d4d4d8!important;box-shadow:none!important}
+.green-gradient{background:linear-gradient(100deg,#fff,#a1a1aa,#fff)!important;background-size:220% auto!important;background-clip:text!important;-webkit-background-clip:text!important}
+.green-card,.step-card,.game-mini-card,.server-card,.metric-card,.cta-green{border-color:rgba(255,255,255,.09)!important;background:rgba(12,12,12,.78)!important}
+.green-card:hover,.game-mini-card:hover{border-color:rgba(255,255,255,.18)!important}
+.section-kicker{color:#71717a!important}
+.site-header{padding-top:16px}
+.site-header-inner{border-bottom-color:rgba(255,255,255,.08)!important}
+.site-nav{border-color:rgba(255,255,255,.1)!important;background:rgba(12,12,12,.82)!important}
+.site-nav-link{color:#71717a!important}
+.site-nav-link:hover,.site-nav-link.is-active{color:#f4f4f5!important}
+.nav-hover-bg{background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.08)!important;box-shadow:none!important}
+.nav-active-line{background:#fff!important;box-shadow:none!important}
+.header-register{background:#f4f4f5!important;color:#09090b!important}
+.header-login{color:#a1a1aa!important}
+.premium-border::before{background:linear-gradient(120deg,rgba(255,255,255,.12),rgba(255,255,255,.04),rgba(255,255,255,.08))!important}
+/* neutralize utility colors used by earlier pages */
+.text-emerald-300,.text-emerald-400,.text-indigo-300,.text-indigo-400{color:#d4d4d8!important}
+.bg-emerald-400,.bg-emerald-400\/70,.bg-indigo-400,.bg-indigo-500,.bg-indigo-600\/10,.bg-indigo-500\/10,.bg-indigo-500\/15{background-color:rgba(255,255,255,.08)!important}
+.border-emerald-400\/10,.border-emerald-500\/10,.border-emerald-500\/20,.border-indigo-500,.border-indigo-500\/10{border-color:rgba(255,255,255,.10)!important}
+.input-glow:focus{box-shadow:0 0 0 4px rgba(255,255,255,.05),0 0 28px rgba(255,255,255,.04)!important}
+.status-online{background:#d4d4d8!important;animation:none!important}
+.console-scan::after{background:linear-gradient(to bottom,transparent,rgba(255,255,255,.05),transparent)!important}

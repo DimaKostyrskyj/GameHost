@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Eye, EyeOff, Lock, Mail, Loader2 } from "lucide-react";
 import { AuthCard } from "@/components/AuthCard";
 
-const input = "h-12 w-full rounded-xl border border-zinc-800 bg-zinc-900/65 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-indigo-500 input-glow focus:ring-2 focus:ring-indigo-500/10";
+const input = "h-12 w-full rounded-xl border border-zinc-800 bg-zinc-900/65 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-zinc-700 input-glow focus:ring-2 focus:ring-indigo-500/10";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -63,7 +63,7 @@ export default function LoginPage() {
             </motion.div>
             <input className={`${input} pl-10 pr-4`} type="email" value={email} onChange={e => setEmail(e.target.value)} onFocus={() => setFocused("email")} onBlur={() => setFocused(null)} placeholder="you@example.com" autoComplete="email" />
             <AnimatePresence>
-              {email && <motion.div initial={{ opacity: 0, scale: .7 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .7 }} className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-400"><CheckCircle2 size={16} /></motion.div>}
+              {email && <motion.div initial={{ opacity: 0, scale: .7 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .7 }} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-300"><CheckCircle2 size={16} /></motion.div>}
             </AnimatePresence>
           </div>
         </motion.div>
@@ -109,7 +109,7 @@ export default function LoginPage() {
         transition={{ delay: .65 }}
         className="mt-7 border-t border-zinc-800/80 pt-6 text-center text-sm text-zinc-500"
       >
-        Нет аккаунта? <Link href="/register" className="font-medium text-zinc-300 transition-colors hover:text-indigo-400">Зарегистрироваться</Link>
+        Нет аккаунта? <Link href="/register" className="font-medium text-zinc-300 transition-colors hover:text-zinc-300">Зарегистрироваться</Link>
       </motion.div>
     </AuthCard>
   );

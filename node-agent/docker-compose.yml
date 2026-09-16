@@ -1,0 +1,17 @@
+services:
+  gamehost-node-agent:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    restart: unless-stopped
+    environment:
+      PORT: 8787
+      NODE_NAME: node-eu-01
+      NODE_AGENT_TOKEN: change-this-long-random-token
+      GAMEHOST_DATA_DIR: /opt/gamehost/servers
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/gamehost/servers:/opt/gamehost/servers

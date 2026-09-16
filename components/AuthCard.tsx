@@ -20,7 +20,7 @@ export function AuthCard({
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="auth-grid absolute inset-0 opacity-40" />
         <motion.div
-          className="absolute left-1/2 top-[-280px] h-[650px] w-[650px] -translate-x-1/2 rounded-full bg-indigo-600/14 blur-[150px]"
+          className="absolute left-1/2 top-[-280px] h-[650px] w-[650px] -translate-x-1/2 rounded-full bg-white/[.04] blur-[150px]"
           animate={{ x: [0, 35, -20, 0], y: [0, 25, -10, 0], scale: [1, 1.08, .96, 1] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -54,7 +54,7 @@ export function AuthCard({
               className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white text-black shadow-[0_0_0_1px_rgba(255,255,255,.08),0_12px_35px_rgba(0,0,0,.3)]"
             >
               <Server size={21} />
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full border border-[#050507] bg-indigo-500 text-white">
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full border border-[#050507] bg-zinc-800 text-white">
                 <Sparkles size={9} />
               </span>
             </motion.div>
@@ -69,7 +69,7 @@ export function AuthCard({
           className="auth-card relative overflow-hidden rounded-[26px] border border-white/[.09] bg-zinc-950/75 p-6 shadow-[0_35px_120px_rgba(0,0,0,.55)] backdrop-blur-2xl sm:p-8"
         >
           <motion.div
-            className="pointer-events-none absolute -left-20 -top-20 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl"
+            className="pointer-events-none absolute -left-20 -top-20 h-40 w-40 rounded-full bg-white/[.04] blur-3xl"
             animate={{ opacity: [0.35, .7, .35], scale: [1, 1.25, 1] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -80,7 +80,7 @@ export function AuthCard({
               transition={{ delay: .22, duration: .45 }}
               className="mb-7 text-center"
             >
-              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 opacity-80" />
+              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-gradient-to-r from-white to-violet-500 opacity-80" />
               <h1 className="text-[27px] font-semibold tracking-[-.025em]">{title}</h1>
               <p className="mt-2 text-sm leading-6 text-zinc-500">{subtitle}</p>
             </motion.div>
