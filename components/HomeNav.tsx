@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Gamepad2, Home, Layers3, CreditCard, Sparkles, ArrowUpRight } from "lucide-react";
+import { Gamepad2, Home, CreditCard, Sparkles, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type User = { username: string; email: string };
 
@@ -15,8 +16,10 @@ const items = [
 ];
 
 export function HomeNav() {
+  const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -29,6 +32,11 @@ export function HomeNav() {
   }, []);
 
   const initials = user?.username.slice(0, 2).toUpperCase() ?? "GH";
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/#")) return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <header className="relative z-50 px-4 pt-5 sm:px-6 lg:px-8">
@@ -40,15 +48,42 @@ export function HomeNav() {
           <span className="hidden text-lg font-semibold tracking-[-.03em] sm:block">GameHost</span>
         </Link>
 
-        <div className="magic-nav">
-          {items.map(({ href, label, icon: Icon }, index) => (
-            <Link key={href} href={href} className={`magic-nav-item ${index === 0 ? "active" : ""}`}>
-              <motion.span whileHover={{ y: -2 }} whileTap={{ scale: .9 }} className="magic-nav-icon">
-                <Icon size={18} strokeWidth={1.9} />
-              </motion.span>
-              <span className="magic-nav-label">{label}</span>
-            </Link>
-          ))}
+        <div className="magic-nav" onMouseLeave={() => setHovered(null)}>
+          {items.map(({ href, label, icon: Icon }) => {
+            const active = isActive(href);
+            const isHovered = hovered === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                onMouseEnter={() => setHovered(href)}
+                className={`magic-nav-item ${active ? "active" : ""}`}
+              >
+                {isHovered && (
+                  <motion.span
+                    layoutId="magic-nav-hover"
+                    className="magic-nav-hover"
+                    transition={{ type: "spring", stiffness: 520, damping: 34, mass: .55 }}
+                  />
+                )}
+                {active && (
+                  <motion.span
+                    layoutId="magic-nav-active"
+                    className="magic-nav-active"
+                    transition={{ type: "spring", stiffness: 420, damping: 30, mass: .65 }}
+                  />
+                )}
+                <motion.span
+                  animate={{ y: isHovered ? -2 : 0, scale: isHovered ? 1.04 : 1 }}
+                  transition={{ type: "spring", stiffness: 420, damping: 28 }}
+                  className="magic-nav-icon"
+                >
+                  <Icon size={18} strokeWidth={1.9} />
+                </motion.span>
+                <span className="magic-nav-label">{label}</span>
+              </Link>
+            );
+          })}
         </div>
 
         <div className="flex min-w-[40px] items-center justify-end gap-2">
