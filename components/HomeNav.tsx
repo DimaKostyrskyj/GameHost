@@ -1,7 +1,71 @@
 "use client";
+
 import Link from "next/link";
-import { Gamepad2, ArrowRight } from "lucide-react";
+import { Gamepad2, Home, Layers3, CreditCard, Sparkles, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-type User={username:string;email:string};
-export function HomeNav(){const[user,setUser]=useState<User|null>(null);const[loading,setLoading]=useState(true);useEffect(()=>{let active=true;fetch("/api/auth/me",{cache:"no-store"}).then(async r=>r.ok?(await r.json()).user:null).then(u=>{if(active)setUser(u)}).catch(()=>{}).finally(()=>{if(active)setLoading(false)});return()=>{active=false}},[]);const initials=user?.username.slice(0,2).toUpperCase()??"GH";return <nav className="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8"><Link href="/" className="group flex items-center gap-3"><motion.div whileHover={{rotate:-5,scale:1.06}} className="logo-mark flex h-10 w-10 items-center justify-center rounded-xl bg-white text-black"><Gamepad2 size={21}/></motion.div><span className="text-xl font-semibold tracking-tight">GameHost</span></Link><div className="hidden items-center gap-7 text-sm text-zinc-500 md:flex"><Link href="/" className="transition hover:text-white">Главная</Link><Link href="/games" className="transition hover:text-white">Игры</Link><Link href="/pricing" className="transition hover:text-white">Тарифы</Link><Link href="/#features" className="transition hover:text-white">Возможности</Link></div><div className="flex items-center gap-2">{loading?<div className="h-10 w-32 animate-pulse rounded-xl bg-zinc-900/70"/>:user?<Link href="/dashboard" className="hover-lift flex items-center gap-2.5 rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-2"><span className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/15 text-[11px] font-semibold text-indigo-300">{initials}</span><span className="hidden text-left sm:block"><span className="block text-sm font-medium text-white">{user.username}</span><span className="block text-[11px] text-zinc-600">Личный кабинет</span></span><ArrowRight size={15} className="text-zinc-600"/></Link>:<><Link href="/login" className="rounded-xl px-4 py-2.5 text-sm text-zinc-400 transition hover:bg-zinc-900 hover:text-white">Войти</Link><Link href="/register" className="btn-shine rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-zinc-200">Регистрация</Link></>}</div></nav>}
+
+type User = { username: string; email: string };
+
+const items = [
+  { href: "/", label: "Главная", icon: Home },
+  { href: "/games", label: "Игры", icon: Gamepad2 },
+  { href: "/pricing", label: "Тарифы", icon: CreditCard },
+  { href: "/#features", label: "Возможности", icon: Sparkles },
+];
+
+export function HomeNav() {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/auth/me", { cache: "no-store" })
+      .then(async (r) => (r.ok ? (await r.json()).user : null))
+      .then((u) => { if (active) setUser(u); })
+      .catch(() => {})
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, []);
+
+  const initials = user?.username.slice(0, 2).toUpperCase() ?? "GH";
+
+  return (
+    <header className="relative z-50 px-4 pt-5 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+        <Link href="/" className="group flex shrink-0 items-center gap-3">
+          <motion.div whileHover={{ rotate: -6, scale: 1.06 }} whileTap={{ scale: .96 }} className="logo-mark green-logo flex h-10 w-10 items-center justify-center rounded-xl">
+            <Gamepad2 size={20} />
+          </motion.div>
+          <span className="hidden text-lg font-semibold tracking-[-.03em] sm:block">GameHost</span>
+        </Link>
+
+        <div className="magic-nav">
+          {items.map(({ href, label, icon: Icon }, index) => (
+            <Link key={href} href={href} className={`magic-nav-item ${index === 0 ? "active" : ""}`}>
+              <motion.span whileHover={{ y: -2 }} whileTap={{ scale: .9 }} className="magic-nav-icon">
+                <Icon size={18} strokeWidth={1.9} />
+              </motion.span>
+              <span className="magic-nav-label">{label}</span>
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex min-w-[40px] items-center justify-end gap-2">
+          {loading ? <div className="h-10 w-10 animate-pulse rounded-xl bg-zinc-900" /> : user ? (
+            <Link href="/dashboard" className="user-nav-pill">
+              <span className="user-avatar">{initials}</span>
+              <span className="hidden max-w-28 truncate text-sm font-medium sm:block">{user.username}</span>
+              <ArrowUpRight size={15} className="text-emerald-300" />
+            </Link>
+          ) : (
+            <>
+              <Link href="/login" className="nav-login">Войти</Link>
+              <Link href="/register" className="nav-register">Регистрация</Link>
+            </>
+          )}
+        </div>
+      </nav>
+    </header>
+  );
+}
