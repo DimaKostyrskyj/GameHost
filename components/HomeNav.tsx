@@ -55,6 +55,8 @@ export function HomeNav() {
         <div
           className="magic-nav"
           onMouseLeave={() => setHovered(null)}
+          role="navigation"
+          aria-label="Основная навигация"
         >
           {items.map(({ href, label, icon: Icon }) => {
             const active = isActive(href);
@@ -65,24 +67,20 @@ export function HomeNav() {
                 key={href}
                 href={href}
                 onMouseEnter={() => setHovered(href)}
-                className={`magic-nav-item ${active ? "active" : ""}`}
+                className={`magic-nav-item ${focused ? "focused" : ""}`}
                 aria-current={active ? "page" : undefined}
               >
                 {focused && (
                   <motion.span
-                    layoutId="magic-nav-indicator"
-                    className="magic-nav-indicator"
-                    transition={{ type: "spring", stiffness: 520, damping: 38, mass: .65 }}
+                    layoutId="gamehost-nav-highlight"
+                    className="magic-nav-highlight"
+                    transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.7 }}
                   />
                 )}
-                <motion.span
-                  animate={{ y: hovered === href ? -1 : 0, scale: hovered === href ? 1.03 : 1 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 32, mass: .55 }}
-                  className="magic-nav-content"
-                >
+                <span className="magic-nav-content">
                   <Icon size={17} strokeWidth={1.9} />
                   <span className="magic-nav-label">{label}</span>
-                </motion.span>
+                </span>
               </Link>
             );
           })}
