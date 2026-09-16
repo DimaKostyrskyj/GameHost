@@ -39,70 +39,72 @@ export function HomeNav() {
   };
 
   return (
-    <header className="relative z-50 px-4 pt-5 sm:px-6 lg:px-8">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4">
-        <Link href="/" className="group flex shrink-0 items-center gap-3">
-          <motion.div
-            whileHover={{ rotate: -5, scale: 1.05 }}
-            whileTap={{ scale: .96 }}
-            className="logo-mark green-logo flex h-10 w-10 items-center justify-center rounded-xl"
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link href="/" className="brand" aria-label="GameHost — главная">
+          <motion.span
+            whileHover={{ scale: 1.04, rotate: -2 }}
+            whileTap={{ scale: 0.97 }}
+            className="brand-mark"
           >
-            <Gamepad2 size={20} />
-          </motion.div>
-          <span className="hidden text-lg font-semibold tracking-[-.03em] sm:block">GameHost</span>
+            <Gamepad2 size={20} strokeWidth={2.1} />
+          </motion.span>
+          <span className="brand-name">GameHost</span>
         </Link>
 
-        <div
-          className="magic-nav"
+        <nav
+          className="site-nav"
           onMouseLeave={() => setHovered(null)}
-          role="navigation"
           aria-label="Основная навигация"
         >
           {items.map(({ href, label, icon: Icon }) => {
             const active = isActive(href);
-            const focused = hovered === href || (!hovered && active);
-
+            const highlighted = hovered === href;
             return (
               <Link
                 key={href}
                 href={href}
                 onMouseEnter={() => setHovered(href)}
-                className={`magic-nav-item ${focused ? "focused" : ""}`}
+                className={`site-nav-link ${active ? "is-active" : ""}`}
                 aria-current={active ? "page" : undefined}
               >
-                {focused && (
+                {highlighted && (
                   <motion.span
-                    layoutId="gamehost-nav-highlight"
-                    className="magic-nav-highlight"
-                    transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.7 }}
+                    layoutId="nav-hover"
+                    className="nav-hover-bg"
+                    transition={{ type: "spring", stiffness: 500, damping: 38, mass: 0.55 }}
                   />
                 )}
-                <span className="magic-nav-content">
-                  <Icon size={17} strokeWidth={1.9} />
-                  <span className="magic-nav-label">{label}</span>
+                <span className="site-nav-content">
+                  <Icon size={16} strokeWidth={1.9} />
+                  <span>{label}</span>
                 </span>
+                {active && <motion.span layoutId="nav-active" className="nav-active-line" transition={{ type: "spring", stiffness: 520, damping: 38 }} />}
               </Link>
             );
           })}
-        </div>
+        </nav>
 
-        <div className="flex min-w-[40px] items-center justify-end gap-2">
+        <div className="header-account">
           {loading ? (
-            <div className="h-10 w-10 animate-pulse rounded-xl bg-zinc-900" />
+            <div className="account-skeleton" />
           ) : user ? (
-            <Link href="/dashboard" className="user-nav-pill">
-              <span className="user-avatar">{initials}</span>
-              <span className="hidden max-w-28 truncate text-sm font-medium sm:block">{user.username}</span>
-              <ArrowUpRight size={15} className="text-emerald-300" />
+            <Link href="/dashboard" className="account-link">
+              <span className="account-avatar">{initials}</span>
+              <span className="account-copy">
+                <span className="account-caption">Аккаунт</span>
+                <span className="account-name">{user.username}</span>
+              </span>
+              <ArrowUpRight size={15} className="account-arrow" />
             </Link>
           ) : (
-            <>
-              <Link href="/login" className="nav-login">Войти</Link>
-              <Link href="/register" className="nav-register">Регистрация</Link>
-            </>
+            <div className="auth-actions">
+              <Link href="/login" className="header-login">Войти</Link>
+              <Link href="/register" className="header-register">Создать аккаунт</Link>
+            </div>
           )}
         </div>
-      </nav>
+      </div>
     </header>
   );
 }
